@@ -12,10 +12,10 @@ import figuras.Figura;
 public class AreaDeDesenho extends JPanel {
 
 	private static final long serialVersionUID = 6297758630055886097L;
-	
+
 	private List<Figura> figuras;
 	private Figura sombra = null;
-	
+
 	public AreaDeDesenho() {
 		this.figuras = new ArrayList<Figura>();
 		this.setPreferredSize(new Dimension(600, 400));

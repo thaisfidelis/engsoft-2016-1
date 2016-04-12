@@ -10,19 +10,17 @@ import javax.swing.JToolBar;
 public class BarraDeFerramentas extends JToolBar {
 
 	private static final long serialVersionUID = -8292143412476774295L;
-	
+
 	ButtonGroup grupo;
 	private Ferramenta ferramenta;
-	
+
 	public BarraDeFerramentas() {
 		super("Barra de Ferramentas");
 		this.grupo = new ButtonGroup();
-		
-		Ferramenta[] ferramentas = new Ferramenta[]{
-			new FerramentaRetangulo(this),
-			new FerramentaCirculo(this),
-			new FerramentaLinha(this)
-		};
+
+		Ferramenta[] ferramentas = new Ferramenta[] {
+				new FerramentaRetangulo(this), new FerramentaElipse(this),
+				new FerramentaLinha(this) };
 		for (Ferramenta f : ferramentas) {
 			criarBotao(f);
 		}
@@ -40,7 +38,7 @@ public class BarraDeFerramentas extends JToolBar {
 		}
 		return botao;
 	}
-	
+
 	public Ferramenta leFerramentaSelecionada() {
 		return this.ferramenta;
 	}

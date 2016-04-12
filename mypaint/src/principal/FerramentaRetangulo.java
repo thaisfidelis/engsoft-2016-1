@@ -18,7 +18,7 @@ public class FerramentaRetangulo extends Ferramenta {
 	public String getNome() {
 		return "Retangulo";
 	}
-	
+
 	public boolean ehFerramentaPadrao() {
 		return true;
 	}

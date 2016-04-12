@@ -19,5 +19,4 @@ public class FerramentaLinha extends Ferramenta {
 		return "Linha";
 	}
 
-	
 }

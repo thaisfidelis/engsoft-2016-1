@@ -16,16 +16,16 @@ public class MyPaint extends JFrame {
 	public MyPaint() {
 		JPanel painelPrincipal = new JPanel();
 		painelPrincipal.setLayout(new BorderLayout());
-		
+
 		BarraDeFerramentas barraDeFerramentas = new BarraDeFerramentas().inicializaBarraDeFerramenta(painelPrincipal);
-		
+
 		AreaDeDesenho areaDeDesenho = new AreaDeDesenho();
 		painelPrincipal.add(areaDeDesenho, BorderLayout.CENTER);
-		
+
 		GerenciadorDeEventos gerenciador = new GerenciadorDeEventos(areaDeDesenho, barraDeFerramentas);
 		areaDeDesenho.addMouseListener(gerenciador);
 		areaDeDesenho.addMouseMotionListener(gerenciador);
-		
+
 		this.setContentPane(painelPrincipal);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.pack();
