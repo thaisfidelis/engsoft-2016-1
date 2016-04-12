@@ -1,55 +1,59 @@
 package principal;
 
-import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
-import javax.swing.JPanel;
-import javax.swing.JToggleButton;
+import javax.swing.JButton;
+import javax.swing.JRadioButton;
 import javax.swing.JToolBar;
 
 public class BarraDeFerramentas extends JToolBar {
 
 	private static final long serialVersionUID = -8292143412476774295L;
 
-	ButtonGroup grupo;
-	private Ferramenta ferramenta;
+	private ButtonGroup grupo;
+	private final GerenciadorDeEventos ge;
 
-	public BarraDeFerramentas() {
+	public BarraDeFerramentas(GerenciadorDeEventos gerenciadorDeEventos) {
 		super("Barra de Ferramentas");
+		this.ge = gerenciadorDeEventos;
 		this.grupo = new ButtonGroup();
 
 		Ferramenta[] ferramentas = new Ferramenta[] {
-				new FerramentaRetangulo(this), new FerramentaElipse(this),
-				new FerramentaLinha(this) };
+				new FerramentaRetangulo(),
+				new FerramentaElipse(),
+				new FerramentaLinha() 
+		};
 		for (Ferramenta f : ferramentas) {
 			criarBotao(f);
 		}
+
+		JButton botaoLimpar = new JButton("Limpar");
+		botaoLimpar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ge.limpaAreaDeDesenho();
+			}
+		});
+		this.add(botaoLimpar);
+		
 		this.setFloatable(false);
 	}
 
-	private JToggleButton criarBotao(Ferramenta ferramenta) {
-		JToggleButton botao = new JToggleButton(ferramenta.getNome());
-		botao.addActionListener(ferramenta);
+	private JRadioButton criarBotao(final Ferramenta ferramenta) {
+		JRadioButton botao = new JRadioButton(ferramenta.getNome());
+		botao.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ge.setFerramenta(ferramenta);
+			}
+		});
 		grupo.add(botao);
 		this.add(botao);
 		if (ferramenta.ehFerramentaPadrao()) {
-			botao.getModel().setPressed(true);
-			this.ferramenta = ferramenta;
+			botao.getModel().setSelected(true);
+			ge.setFerramenta(ferramenta);
 		}
 		return botao;
-	}
-
-	public Ferramenta leFerramentaSelecionada() {
-		return this.ferramenta;
-	}
-
-	public void setFerramentaAtiva(Ferramenta ferramenta) {
-		this.ferramenta = ferramenta;
-	}
-
-	public BarraDeFerramentas inicializaBarraDeFerramenta(JPanel painelPrincipal) {
-		painelPrincipal.add(this, BorderLayout.PAGE_START);
-		return this;
 	}
 
 }
