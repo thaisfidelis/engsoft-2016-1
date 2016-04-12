@@ -41,4 +41,7 @@ public class AreaDeDesenho extends JPanel {
 		this.sombra = sombra;
 	}
 
+	public void limpa() {
+		this.figuras.clear();
+	}
 }
