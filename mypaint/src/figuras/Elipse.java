@@ -1,5 +1,6 @@
 package figuras;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class Elipse extends Figura {
@@ -27,6 +28,7 @@ public class Elipse extends Figura {
 
 	@Override
 	public void desenha(Graphics g) {
-		g.drawOval(x, y, largura, altura);
+		g.setColor(Color.BLUE);
+		g.drawOval(x, y, getLargura(), getAltura());
 	}
 }
